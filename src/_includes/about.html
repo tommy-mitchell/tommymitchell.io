@@ -1,0 +1,21 @@
+<!-- About Section-->
+<section class="page-section bg-primary text-white mb-0" id="about">
+    <div class="container text-center d-flex align-items-center flex-column">
+        <!-- About Section Heading-->
+        <h2 class="page-section-heading text-uppercase text-white">{{ site.about.title }}</h2>
+        <!-- Icon Divider-->
+        <div class="divider-line-light"></div>
+        <!-- About Section Content-->
+        <div class="about text-md-justify w-75 w-md-65 mt-4">
+        {% capture aboutText %}{% include about.md %}{% endcapture %}
+        {{ aboutText | markdownify }}
+        </div>
+        <!-- About Section Button-->
+        <div>
+            {% assign resume = site.about.resume %}
+            <a class="btn btn-xl btn-secondary border-0 text-decoration-none about-download boop-y-3" href="{{ resume.link }}">
+                <span class="boop"><i class="fas {{ resume.icon }} me-2"></i></span> {{ resume.cptn }}
+            </a>
+        </div>
+    </div>
+</section>

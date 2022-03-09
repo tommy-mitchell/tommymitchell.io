@@ -1,0 +1,61 @@
+{% assign id = page.title | downcase | split: " " | join: "-" %}
+<div class="portfolio-modal modal fade" id="portfolioModal-{{ id }}" tabindex="-1" aria-labelledby="portfolioModal-{{ id }}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-md-down">
+        <div class="modal-content border-0">
+            <div class="modal-header border-lg-0 pb-lg-0 pt-lg-4">
+                <span class="title-centerer col-lg-4"></span>
+                <!-- Portfolio Modal - Title-->
+                <span class="d-flex justify-content-center col-lg-4">
+                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">{{ page.title }}</h2>
+                </span>
+                <!-- Close Button-->
+                <button class="btn-close shadow-none col-lg-4 boop-rotate-20" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center pb-lg-5">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <!-- Divider (visible large)-->
+                        <div class="divider-line mt-0 d-none d-lg-block"></div>
+                        <div class="col-lg-8">
+                            <!-- Social Medias-->
+                            {% if page.links %}
+                                <div class = "row socials justify-content-center w-lg-50 gx-5 mx-auto mb-3 mt-0">
+                                    {% for link in page.links %}
+                                        <span class="col-3"><a class="btn btn-social" href="{{ link.link }}"><i class="{{ link.type }} fa-{{ link.icon }}"></i></a></span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            <!-- Portfolio Modal - Image-->
+                            <div class="mb-4">
+                                {% if page.imgs %}
+                                    {% include modal-multiple.html %}
+                                {% else %}
+                                    {% include modal-single.html %}
+                                {% endif %}
+                            </div>
+                            <!-- Portfolio Modal - Text-->
+                            {% if page.content %}
+                                <div class="modal-text">
+                                    {{ page.content }}
+                                </div>
+                                {% ifhascontent more %}
+                                    <div class="modal-more">
+                                        <div class="collapse collapse-modal show" id="{{ id }}-preview">
+                                            <p>{% contentblock preview no-convert %}. . . </p>
+                                        </div>
+                                        <div class="collapse collapse-modal" id="{{ id }}-more">
+                                            {% contentblock more %}
+                                        </div>
+                                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".collapse-modal" aria-expanded="false" aria-controls="{{ id }}-preview {{ id }}-more">
+                                            Show More
+                                        </button>
+                                    </div>
+                                {% endifhascontent %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

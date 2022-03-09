@@ -1,0 +1,73 @@
+@import 'custom/helpers';
+@import 'bootstrap/mixins/breakpoints';
+
+#mainNav {
+    // letter spacing on for a e s t h e t i c
+    letter-spacing: 1px;
+
+    // center brand name
+    .navbar-brand {
+        padding-top: $navbar-brand-padding-y * 2;
+        padding-bottom: unset;
+    }
+
+    // smaller menu button
+    .navbar-toggler {
+        padding: 0.5rem;
+        margin-bottom: $border-width;
+        border: $border-width $white-10 solid;
+
+        // menu open
+        &:not(.collapsed) {
+            // highlight
+            background-color: $white-10;
+
+            // rotate hamburger icon 90 deg quickly
+            > .fa-bars {
+                transform:  rotate(90deg);
+                transition: transform .15s ease;
+            }
+        }
+
+        // ease out of hamburger icon rotation
+        > .fa-bars {
+            will-change: transform;
+            transition:  transform .3s ease-out;
+        }
+    }
+
+    .navbar-collapse {
+        .nav-link {
+            color: $white !important;
+            
+            &:hover {
+                background-color: shift-color($secondary-dark, -10%);
+            }
+            
+            &:focus {
+                background-color: shift-color($secondary-dark,  20%);
+            }
+
+            @include shrink-on-click-transition();
+
+            // currently selected
+            &.active {
+                background-color: $secondary-dark !important;
+            }
+        }
+
+        @include media-breakpoint-down(md) {
+            border-top:    $border-width $white-10 solid;
+            border-bottom: $border-width $white-10 solid;
+            letter-spacing: 0;
+        }
+    }
+
+    @include media-breakpoint-up(lg) {
+        will-change: padding;
+
+        &.navbar-shrink {
+            padding: 0;
+        }
+    }
+}

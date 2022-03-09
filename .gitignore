@@ -1,0 +1,10 @@
+_site
+.husky
+.jekyll-cache
+.vscode
+node_modules
+.jekyll-metadata
+Gemfile.lock
+package-lock.json
+src/_sass/bootstrap
+src/_sass/freelancer

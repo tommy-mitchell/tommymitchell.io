@@ -1,0 +1,37 @@
+@import 'custom/helpers';
+
+// CSS for button that scrolls to top of page on mobile
+
+.scroll-top {
+    //z-index:  1049;
+    position: fixed;
+    right:    2%;
+    bottom:   2%;
+    width:    50px;
+    height:   50px;
+
+    // control sizing of icon
+    > .btn {
+        width:         50px;
+        height:        50px;
+        border-radius: 100%;
+        font-size:     20px;
+        line-height:   28px;
+
+        &:focus {
+            outline: 0;
+        }
+    }
+
+    transition: opacity .3s, $transition-click;
+    @include shrink-on-click();
+}
+
+// faded when page stops scrolling
+.scroll-faded {
+    opacity: .25;
+}
+
+.scroll-hidden {
+    opacity: 0;
+}

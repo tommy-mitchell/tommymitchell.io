@@ -1,0 +1,27 @@
+<section id="reader-portfolio" class="visually-hidden">
+    <h2>Portfolio</h2>
+    <hr>
+    {% for item in site.portfolio %}
+        {% assign id = item.title | downcase | split: " " | join: "-" %}
+        <div id="readerModal-{{ id }}" aria-labelledby="modal-{{ id }}">
+            <h3>{{ item.title }}</h3>
+            {% if item.links %}
+                <div>
+                    {% for link in item.links %}
+                        <a href="{{ link.link }}">{{ link.icon }}</a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+            {% if item.imgs %}
+                {% for img in item.imgs %}
+                    <img src="assets/img/portfolio/{{ img.name }}" alt="{{ item.alt }}" />
+                {% endfor %}
+            {% else %}
+                <img src="assets/img/portfolio/{{ item.img }}" alt="{{ item.alt }}" />
+            {% endif %}
+            {% if item.content %}
+                {{ item.content }}
+            {% endif %}
+        </div>
+    {% endfor %}
+</section>

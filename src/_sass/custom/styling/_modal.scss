@@ -1,0 +1,121 @@
+@import 'custom/helpers';
+@import 'bootstrap/bootstrap-utilities';
+
+.modal-content {
+    border-radius: $border-radius-sm;
+}
+
+.portfolio-modal {
+    @include media-breakpoint-only(md) {
+        @media (max-height: 500px) {
+            .modal-dialog {
+                //@include modal-fullscreen();
+
+                width: 100vw;
+                max-width: none;
+                height: 100%;
+                margin: 0;
+
+                .modal-content {
+                    height: 100%;
+                    border: 0;
+                    @include border-radius(0);
+                }
+
+                .modal-header {
+                    @include border-radius(0);
+                }
+
+                .modal-body {
+                    overflow-y: auto;
+                }
+
+                .modal-footer {
+                    @include border-radius(0);
+                }
+            }
+        }
+    }
+
+    // rounded carousel indicators
+    .carousel-indicators {
+        align-items: center;
+        transition: opacity .6s ease, $transition-click;
+        width: fit-content;
+
+        > button {
+            width:  1rem;
+            height: 1rem;
+
+            transition: opacity .15s ease;
+
+            // shrink button on click, make active indicator bigger
+            @include shrink-on-click(.875, 1.125);
+    
+            // remove previous border styling and make it a circle
+            border: 0 !important;
+            border-radius:   50%;
+
+            // increase spacing on mobile
+            @include media-breakpoint-down(md) {
+                margin: 0 5px;
+            }
+
+            &:hover {
+                opacity: .75;
+            }
+        }
+    }
+
+    .modal-header {
+        // dummy for title centering on lg+
+        .title-centerer {
+            visibility: hidden;
+
+            // don't center title on small devices
+            @include media-breakpoint-down(md) {
+                width: 0;
+            }
+        }
+
+        .portfolio-modal-title {
+            white-space: nowrap;
+
+            @include media-breakpoint-down(md) {
+                font-size: 2rem;
+            }
+
+            @include media-breakpoint-up(lg) {
+                text-align: center;
+            }
+        }
+    }
+
+    @include media-breakpoint-up(lg) {
+        .carousel-control-prev {
+            margin-left: 5rem;
+        }
+
+        .carousel-control-next {
+            margin-right: 5rem;
+        }
+    }
+
+    @include media-breakpoint-up(xl) {
+        .carousel-control-prev {
+            margin-left: 5.55rem;
+        }
+
+        .carousel-control-next {
+            margin-right: 5.55rem;
+        }
+    }
+
+    .carousel-inner, .modal-single {
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.75);
+    }
+
+    .carousel-item {
+        will-change: transform, display, position;
+    }
+}

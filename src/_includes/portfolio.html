@@ -1,0 +1,28 @@
+<!-- Portfolio Section-->
+<section class="page-section portfolio pb-0" id="portfolio" aria-hidden="true">
+    <div class="container d-flex align-items-center flex-column">
+        <!-- Portfolio Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Portfolio</h2>
+        <!-- Icon Divider-->
+        <div class="divider-line"></div>
+        <!-- Portfolio Grid Items-->
+        <div class="row justify-content-center w-95">
+            {% for item in site.portfolio %}
+                {% assign id = item.title | downcase | split: " " | join: "-" %}
+                <div class="col-sm-6 col-lg-4 mb-4 mb-lg-5">
+                    <div class="portfolio-item mx-auto rounded-1" data-bs-toggle="modal" data-bs-target="#portfolioModal-{{ id }}">
+                        <div class="portfolio-item-caption h-100 w-100 boop-rotate-5">
+                            <div class="portfolio-item-caption-content text-center text-white">
+                                <span class="caption-icon boop"><i class="fas fa-search-plus fa-lg"></i></span>
+                                <span class="caption-title">{{ item.title }}</span>
+                            </div>
+                        </div>
+                        {% capture fill %}{% if item.fill %} no-cover{% endif %}{% endcapture %}
+                        {% capture pixel %}{% if item.pixel %} pixel{% endif %}{% endcapture %}
+                        <img class="portfolio-img{{ fill }}{{ pixel }}" src="assets/img/portfolio/{{ item.img }}" alt="{{ item.alt }}" />
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>

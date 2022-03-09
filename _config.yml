@@ -1,0 +1,79 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+title: Tommy Mitchell
+description: "Game Developer,  Programmer,  Artist"
+meta_author: Mitchell Tommy
+
+settings:
+  easingDuration: 1000
+  colors:
+    primary: 1E1D39
+    secondary: 090A14
+    secondary-dark: 233140
+    dark-link: 4C8AFF
+
+sections: [ "socials", "about", "portfolio" ]
+
+# Header settings (profile pic, skills, social medias)
+header:
+  picture: assets/img/headshot.png
+  socials: # fab
+    - icon: github-square                       #   github
+      link: http://github.com/tommy-mitchell
+    - icon: linkedin                            # linkedin
+      link: https://www.linkedin.com/in/t-mitchell/
+    - icon: itch-io                             #  itch.io
+      link: https://masterfulmonkey.itch.io/
+  others: # fas
+    - icon: envelope-square                     #    email
+      link: mailto:tommy@tommymitchell.io
+    - icon: file-alt                            #   resume
+      link: assets/files/tommy-mitchell-resume.pdf
+
+# About settings
+about:
+  title: About Me
+  resume:
+    link: assets/files/tommy-mitchell-resume.pdf
+    icon: fa-file-download
+    cptn: View Resume
+
+# Portfolio settings
+collections:
+  portfolio:
+    #output: true
+    sort_by: order
+
+defaults:
+  - scope:
+      path: ""
+      type: "portfolio"
+    values:
+      permalink: ""
+      layout: "modal"
+
+# Footer settings (copyright)
+footer:
+  copyright: Tommy Mitchell
+  source: https://github.com/tommy-mitchell/website
+
+# Build settings
+source: src/
+markdown: kramdown
+kramdown:
+  #parse_block_html: false
+  parse_span_html: false
+sass:
+  sass_dir: _sass
+  # uncomment for SASS minimization
+  style: compressed
+  load_paths:
+  - ../node_modules/
+keep_files:
+  - bundle.min.js

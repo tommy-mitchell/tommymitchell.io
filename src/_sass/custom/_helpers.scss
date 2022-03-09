@@ -1,0 +1,49 @@
+
+
+$white-10: rgba($white, 0.1);
+
+.translate-center, .translate-center-x {
+    left:                  50%;
+    transform: translateX(-50%);
+}
+
+.translate-center, .translate-center-y {
+    top:                   50%;
+    transform: translateY(-50%); 
+}
+
+$transition-click: transform 75ms cubic-bezier(0.44, 0.21, 0, 1);;
+
+@mixin shrink-on-click($small: .875, $normal: 1) {
+    // size to return to
+    &.active, &:focus {
+        transform: scale($normal);
+    }
+
+    // make smaller temporarily on click
+    &:active {
+        transform: scale($small);
+    }
+}
+
+@mixin shrink-on-click-transition($small: .875, $normal: 1) {
+    transition: $transition-click;
+    
+    @include shrink-on-click($small, $normal)
+}
+
+@function map-loop-merge($map1, $func, $map2, $args...) {
+    $_map: ();
+  
+    @each $key, $value in $map1 {
+      // allow to pass the $key and $value of the map as an function argument
+      $_args: ();
+      @each $arg in $args {
+        $_args: append($_args, if($arg == "$key", $key, if($arg == "$value", $value, if($arg == "$get", map-get($map2, $key), $arg))));
+      }
+  
+      $_map: map-merge($_map, ($key: call(get-function($func), $_args...)));
+    }
+  
+    @return $_map;
+}

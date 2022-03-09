@@ -1,0 +1,28 @@
+<!-- Masthead-->
+<header class="masthead bg-primary text-white text-center" id="socials">
+    <div class="masthead-container">
+        <!-- Masthead Avatar Image-->
+        <img class="masthead-avatar" src="{{ site.header.picture }}" alt="profile-pic" />
+        <div class="masthead-content">
+            <!-- Masthead Heading-->
+            <h1 class="masthead-heading text-uppercase text-nowrap">{{ site.title }}</h1>
+            <!-- Divider-->
+            <div class="divider-line-light"></div>
+            <!-- Masthead Subheading-->
+            <p class="masthead-subheading text-nowrap">{{ site.description }}</p>
+            <!-- Social Medias col-lg-4 -->
+            <div class = "row socials gx-4">
+                {% assign colNumber = site.header.socials.size | plus: site.header.others.size | plus: 1 %}
+                {% assign class = "col-3" %}
+                <!-- Brands-->
+                {% for item in site.header.socials %}
+                    <span><a class="btn btn-social" href="{{ item.link }}"><i class="fab fa-{{ item.icon }}"></i></a></span>
+                {% endfor %}
+                <!-- Regular Icons-->
+                {% for item in site.header.others %}
+                    <span><a class="btn btn-social" href="{{ item.link }}"><i class="fas fa-{{ item.icon }}"></i></a></span>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</header>

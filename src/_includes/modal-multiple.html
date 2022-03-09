@@ -1,0 +1,36 @@
+<!-- Carousel-->
+{% assign modalId = "carouselModal-{{ id }}" %}
+<div id="carouselModal-{{ id }}" class="carousel slide" data-bs-ride="carousel" data-bs-interval="false">
+    <!-- Indicators -->
+    <div class="carousel-indicators mx-auto">
+        {% for img in page.imgs %}
+            <button type="button" data-bs-target="#carouselModal-{{ id }}" data-bs-slide-to="{{ forloop.index0 }}" 
+                aria-label="Slide {{ forloop.index }}" {% if forloop.first %} class="active" 
+                aria-current="true" {% endif %}></button>
+        {% endfor %}
+    </div>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner mx-auto w-100 w-lg-60 w-xl-80" role="listbox">
+        {% for img in page.imgs %}
+            {% capture pixel %}{% if img.pixel %}pixel{% endif %}{% endcapture %}
+            {% if forloop.first == true %}
+                <div class="carousel-item active">
+            {% else %}
+                <div class="carousel-item">
+            {% endif %}
+                    <img class="carousel-item-main {{ pixel }} img-fluid" src="assets/img/portfolio/{{ img.name }}" alt="{{ page.alt }}">
+                </div>
+        {% endfor %}
+    </div>
+
+    <!-- Controls -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselModal-{{ id }}" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselModal-{{ id }}" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>

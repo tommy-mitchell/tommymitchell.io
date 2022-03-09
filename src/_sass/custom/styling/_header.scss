@@ -1,0 +1,169 @@
+@import 'bootstrap/mixins/breakpoints';
+@import 'bootstrap/mixins/container';
+@import 'bootstrap/variables';
+
+$spacer-4: map-get($spacers, 4);
+$spacer-5: map-get($spacers, 5);
+
+.masthead {
+    // lower top padding for phones with small height
+    @media (max-height: 720px) {
+        padding-top: calc(6rem + 5px);
+    }
+}
+
+.masthead-container {
+    @include make-container();
+
+    // flexed vertical stack w/ horizontal centering
+    display:          flex;
+    flex-direction: column;
+    align-items:    center;
+    
+    flex:      1 1 auto;
+    align-self: stretch;
+
+    .socials > span {
+        // 100/5
+        width: 20%;
+        flex: 0 0 auto; // from col-3
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .masthead {
+        // tall portrait phones
+        @media (min-height: 720px) and (max-height: 800px) {
+            padding-top: calc(6rem + 50px);
+        }
+    
+        .masthead-container {
+            .masthead-avatar {
+                margin-bottom: $spacer-5;
+            }
+    
+            .masthead-content {
+                margin-left:  0;
+                max-width: 100%;
+        
+                .masthead-heading {
+                    font-size: 2.25rem;
+                    margin-bottom: $spacer-4;
+                }
+    
+                .masthead-subheading {
+                    font-size: 1.25rem;
+                }
+
+                .socials {
+                    margin: $spacer-5 auto;
+                }
+            }
+        }
+    }
+}
+
+// stack horizontally on medium devices (landscape phones, portrait tablets)
+@mixin horizontal() {
+    .masthead-container {
+        flex-direction:  row;
+        justify-content: space-around;
+
+        //margin: $spacer-4 0;
+        margin: auto 0;
+
+        .masthead-avatar {
+            margin-bottom: 0;
+        }
+    }
+}
+
+// for landscape on small phones
+@include media-breakpoint-only(sm) {
+    //@media (min-width: 600px) {
+        .masthead {
+            padding-top: calc(6rem + 25px);
+
+            @include horizontal();
+    
+            .masthead-avatar {
+                width: 13rem !important;
+            }
+    
+            .masthead-content {
+                // divider
+                .divider-line, .divider-line-light {
+                    width: 95%;
+                }
+            
+                // icons
+                .socials {
+                    width: 65%;
+                    margin-bottom: 0;
+                }
+            }
+        }
+    //}
+}
+
+@include media-breakpoint-only(md) {
+    @include horizontal();
+
+    .masthead-content {
+        //margin-left: $spacer-4;
+
+        // name
+        .masthead-heading {
+            font-size: 3rem; // TODO
+        }
+    
+        // divider
+        .divider-line, .divider-line-light {
+            width: 95%;
+        }
+    
+        // description
+        .masthead-subheading {
+            font-size: 1.5rem; // TODO
+        }
+    
+        // icons
+        .socials {
+            width: 65%;
+            margin-bottom: 0;
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .masthead-content {
+        .socials {
+            max-width: 50% !important;
+            margin-top: $spacer-4;
+        }
+
+        .masthead-heading {
+            font-size:   4.75rem;
+            line-height: 3.50rem;
+            margin-bottom: $spacer-5;
+        }
+
+        .masthead-subheading {
+            font-size: 1.75rem;
+        }
+    }
+}
+
+.masthead-avatar {
+    @include media-breakpoint-up(lg) {
+        margin-bottom: $spacer-5;
+    }
+
+    @include media-breakpoint-up(xl) {
+        width:   19rem !important;
+    }
+
+    @include media-breakpoint-up(xxl) {
+        width: 21.5rem !important;
+    }
+}

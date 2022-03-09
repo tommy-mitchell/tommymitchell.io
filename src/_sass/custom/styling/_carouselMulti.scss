@@ -1,0 +1,111 @@
+@import 'bootstrap/mixins';
+
+$translateAmount: 25%;
+$overshotAmount:  35%;
+$scaleAmount:     75%;
+
+// ease-in-out exaggerated
+// joshwcomeau.com/animation/css-transitions/#custom-curves
+$ease: cubic-bezier(0.645, 0.045, 0.355, 1);
+
+@mixin transform-prev-next($next) {
+    $direction: if($next, $translateAmount, -1 * $translateAmount);
+
+    transform: translateX($direction) scale($scaleAmount);
+}
+
+@include media-breakpoint-up(lg) {
+    .carousel-inner {
+        overflow: unset;
+    }
+
+    .carousel {
+        &-indicators, &-control-prev, &-control-next {
+            z-index: 3;
+        }
+    }
+
+    .carousel-item {
+        will-change: transform, opacity;
+
+        // show active on top
+        // TODO: deal w/ start/end
+        //&.active:not(&.left, &.right) {}
+        
+        &.active {
+            z-index: 1;
+            transition: .6s transform ease-out, .3s opacity ease-out;
+        }
+
+        // show left/right at 75% opacity
+        &.left, &.right {
+            display: block;
+            opacity: 95%;
+            transition: .25s transform ease-in;
+        }
+
+        &.left:not(&-start), &.right:not(&-end) {
+            transition: 1s transform ease-out;
+        }
+
+        &.active:not(&-next, &-prev), &-next, &-prev {
+            > img {
+                box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.75);
+            }
+        }
+
+        &.left {
+            transform: translateX(-25%) scale(75%);
+        }
+
+        &.right {
+            transform: translateX( 25%) scale(75%);
+        }
+
+        &-next {
+            transform: translateX( 35%);
+        }
+        
+        &-prev {
+            transform: translateX(-35%);
+        }
+
+        // show next active highest when transitioning
+        &-start, &-end {
+            z-index: 2;
+        }
+
+        // moving away from
+        &-next:not(&-start), &-end.active,
+        &-prev:not(&-end), &-start.active {
+            opacity: 95%;
+            transition: .6s transform ease-out, .6s opacity ease-out;
+        }
+
+        // moving right
+        &-next:not(&-start), &-end.active:not(.left),
+        &-start.right.active {
+            transform: translateX( 35%) scale(75%);
+        }
+
+        // moving left
+        &-prev:not(&-end), &-start.active:not(.right),
+        &-end.left.active {
+            transform: translateX(-35%) scale(75%);
+        }
+    }
+}
+
+@mixin to-right() {
+    &-next:not(&-start), &-end.active:not(.prev),
+    &-start.next.active {
+        @content;
+    }
+}
+  
+@mixin to-left() {
+    &-prev:not(&-end), &-start.active:not(.next), 
+    &-end.prev.active {
+        @content;
+    }
+}

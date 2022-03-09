@@ -1,0 +1,21 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+    {% include head.html %}
+    <body id="page-top" class="index">
+        {% include navbar.html %}
+        <main>
+            {% include header.html %}
+            {% include about.html %}
+            {% include screenReader.html %}
+        </main>
+        {% include portfolio.html %}
+        {% include footer.html %}
+        {% include scroll-top.html %}
+        <!-- Portfolio Modals-->
+        {% for item in site.portfolio %}
+            {{ item }}
+        {% endfor %}
+    </body>
+</html>

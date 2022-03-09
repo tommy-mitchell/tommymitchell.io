@@ -1,0 +1,13 @@
+// set color to be the same as navbar links
+$popover-bg:          $secondary-dark;
+$popover-arrow-color: $secondary-dark;
+
+// reduce size
+$popover-body-padding-x: map-get($spacers, 2);
+$popover-body-padding-y: map-get($spacers, 2);
+
+// only show border on bottom
+$popover-border-color: transparent;
+.popover {
+    border-bottom-color: rgba(0, 0, 0, .25) !important;
+}

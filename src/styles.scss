@@ -1,0 +1,127 @@
+---
+---
+// TODO: contrast-ratio
+$dummy: -1;
+
+// import freelancer variables
+@import 'freelancer/variables';
+// import overrides
+@import 'overrides';
+// import bootstrap
+@import 'bootstrap/bootstrap';
+// import freelancer styling
+@import 'freelancer/styles';
+// import custom css
+@import 'custom';
+
+// - Page Details -------------------------------------------------------------------------------------------------------------------------
+
+    body {
+        overflow-x: hidden;
+        background-color: $primary;
+    }
+
+    .portfolio {
+        background-color: white;
+    }
+
+    // increase text size
+    p {
+        font-size: 1.25rem;
+    }
+
+    a {
+        color: $dark-link;
+        text-decoration: none;
+        
+        // TODO: mixin
+        &:hover, &:focus {
+            color: shift-color($dark-link, -20%);
+            text-decoration: underline;
+        }
+    }
+
+    button, .btn {
+        @include shrink-on-click-transition(.9);
+        box-shadow: none !important;
+    }
+
+// - About --------------------------------------------------------------------------------------------------------------------------------
+
+#about {
+    p {
+        margin-bottom: 2rem;
+    }
+
+    .about-download {
+        &:hover {
+            background-color: $secondary-dark !important;
+        }
+    }
+}
+
+.portfolio, #mainNav {
+    > .container {
+        @include media-breakpoint-only(sm) {
+            max-width: map-get($container-max-widths, md);
+        }
+    }
+}
+
+.pixel {
+    image-rendering: crisp-edges;
+}
+
+// removes rough edges
+.copyright {
+    font-size: .9rem;
+
+    @include media-breakpoint-up(sm) {
+        font-size: 1.035rem;
+    }
+}
+
+.boop {
+    display: inline-block;
+    will-change: transform;
+}
+
+.im-paul {
+    cursor: pointer;
+    @extend .boop;
+
+    > .popover {
+        cursor: initial;
+    }
+}
+
+.booper {
+    display: flex;
+    justify-content: space-evenly;
+
+    > span {
+        width: 30%;
+    }
+
+    svg {
+        cursor: pointer;
+        @extend .boop;
+        //color: $secondary-dark;
+
+        @media (hover: hover) {
+            &:hover {
+                color: shift-color($secondary-dark, -25%);
+            }
+        }
+
+        @media (hover: none) {
+            touch-action: manipulation;
+            /*&:focus {
+                outline: 0;
+                color: shift-color($secondary-dark, -25%);
+            }*/
+        }
+    }
+
+    font-size: 2.5rem;
+}
