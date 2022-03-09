@@ -61,7 +61,7 @@ defaults:
 # Footer settings (copyright)
 footer:
   copyright: Tommy Mitchell
-  source: https://github.com/tommy-mitchell/website
+  source: https://github.com/tommy-mitchell/tommymitchell.io
 
 # Build settings
 source: src/

@@ -1,16 +1,9 @@
 {
     "private": true,
     "scripts": {
-        "prepare": "husky install",
         "rollup": "rollup -c",
         "serve": "bundle exec jekyll serve --incremental --host=0.0.0.0",
-        "build": "bundle exec jekyll build",
-        "deploy": "cd _site && touch .nojekyll && git init && git remote add origin git@github.com:tommy-mitchell/tommy-mitchell.github.io.git && git checkout -b gh-pages && git add -A && git commit -m \"jekyll first build\" && git push origin gh-pages"
-    },
-    "husky": {
-        "hooks": {
-            "post-commit": "npm run deploy"
-        }
+        "build": "bundle exec jekyll build"
     },
     "dependencies": {
         "booper": "file:../../js/booper/",

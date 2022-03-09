@@ -1,0 +1,23 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+# copy CNAME to build
+xcopy /y CNAME _site\\CNAME*
+
+# go to build
+cd _site
+
+# tell jekyll not to rebuild
+touch .nojekyll
+
+# switch to gh-pages branch
+git checkout -b gh-pages
+
+# add all files
+git add -A
+
+# commit all files with commit message from main
+git commit -m $1
+
+# push to github
+git push origin gh-pages

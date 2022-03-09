@@ -1,5 +1,4 @@
 _site
-.husky
 .jekyll-cache
 .vscode
 node_modules
