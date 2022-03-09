@@ -1,6 +1,7 @@
 {
     "private": true,
     "scripts": {
+        "prepare": "husky install",
         "rollup": "rollup -c",
         "serve": "bundle exec jekyll serve --incremental --host=0.0.0.0",
         "build": "bundle exec jekyll build"
@@ -10,7 +11,7 @@
         "dom-loaded": "^3.0.0",
         "scroll-to-position": "^1.7.11",
         "sleep-promise": "^9.1.0",
-        "startbootstrap-freelancer": "https://gitpkg.now.sh/StartBootstrap/startbootstrap-freelancer?master&scripts.postinstall=powershell%20-command%20%22%24a%3D'.%2Fsrc%2Fscss%2Fstyles.scss'%3B(gc%20%24a%20%7C%20select%20-Skip%2010)%20%7C%20sc%20%24a%22&scripts.postinstall=%26%26%20(if%20exist%20%22..%2F..%2Fsrc%2Fcss%2F_sass%2Fbootstrap%2F%22%20rmdir%20%22..%2F..%2Fsrc%2Fcss%2F_sass%2Fbootstrap%2F%22)%20%26%26%20mklink%20%2FJ%20%22..%2F..%2Fsrc%2Fcss%2F_sass%2Fbootstrap%2F%22%20%22..%2Fbootstrap%2Fscss%2F%22&scripts.postinstall=%26%26%20(if%20exist%20%22..%2F..%2Fsrc%2Fcss%2F_sass%2Ffreelancer%2F%22%20rmdir%20%22..%2F..%2Fsrc%2Fcss%2F_sass%2Ffreelancer%2F%22)%20%26%26%20mklink%20%2FJ%20%22..%2F..%2Fsrc%2Fcss%2F_sass%2Ffreelancer%2F%22%20%22.%2Fsrc%2Fscss%2F%22"
+        "startbootstrap-freelancer": "https://gitpkg.now.sh/StartBootstrap/startbootstrap-freelancer?master&scripts.postinstall=powershell%20-command%20%22%24a%3D'.%2Fsrc%2Fscss%2Fstyles.scss'%3B(gc%20%24a%20%7C%20select%20-Skip%2010)%20%7C%20sc%20%24a%22&scripts.postinstall=%26%26%20(if%20exist%20%22..%2F..%2Fsrc%2F_sass%2Fbootstrap%2F%22%20rmdir%20%22..%2F..%2Fsrc%2F_sass%2Fbootstrap%2F%22)%20%26%26%20mklink%20%2FJ%20%22..%2F..%2Fsrc%2F_sass%2Fbootstrap%2F%22%20%22..%2Fbootstrap%2Fscss%2F%22&scripts.postinstall=%26%26%20(if%20exist%20%22..%2F..%2Fcss%2F_sass%2Ffreelancer%2F%22%20rmdir%20%22..%2F..%2Fsrc%2F_sass%2Ffreelancer%2F%22)%20%26%26%20mklink%20%2FJ%20%22..%2F..%2Fsrc%2F_sass%2Ffreelancer%2F%22%20%22.%2Fsrc%2Fscss%2F%22"
     },
     "devDependencies": {
         "@rollup/plugin-commonjs": "^21.0.2",
