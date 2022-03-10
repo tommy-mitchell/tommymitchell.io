@@ -9,7 +9,7 @@ commitMessage="$(cat $1)"
 npm run build
 
 # copy build at _site to _dist
-cp -r ./_site ./_dist
+cp -r ./_site/* ./_dist
 
 # enter gh-pages branch
 cd _dist
