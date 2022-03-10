@@ -1,46 +1,24 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-# rebuild _site
-npm run build
-
 # contents of commit message in file at $1
 commitMessage="$(cat $1)"
 #echo "message: $commitMessage"
 
-# copy CNAME to build
-cp CNAME _site/CNAME
+# rebuild _site
+npm run build
 
-# go to build
-cd _site
+# copy build at _site to _dist
+cp -r ./_site ./_dist
 
-# tell jekyll not to rebuild
-touch .nojekyll
+# enter gh-pages branch
+cd _dist
 
-# initialize repo
-git init
-
-# add all files
+# stage all files
 git add -A
 
 # commit all files with commit message from main
 git commit -m "$commitMessage"
-
-# set remote origin so that you can push to github
-git remote add origin git@github.com:tommy-mitchell/tommymitchell.io.git
-git remote set-branches --add "origin" "gh-pages"
-git fetch "origin"
-git checkout --track "origin/gh-pages"
-
-# switch to gh-pages branch
-#git checkout -b gh-pages origin/gh-pages
-
-#git pull origin gh-pages --allow-unrelated-histories
-#git merge origin origin/gh-pages
-
-
-
-
 
 # push to github
 git push origin gh-pages
